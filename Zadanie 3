@@ -1,0 +1,35 @@
+#include <stdio.h>
+#include <string>
+#include <iostream>
+
+void quickSort(std::string &str, int l, int p) {
+          int i = l, j = p;
+          int srodek = str[(l + p) / 2];
+
+          while (i <= j) {
+                while (str[i] < srodek)
+                      i++;
+                while (str[j] > srodek)
+                      j--;
+                if (i <= j) {
+                      std::swap(str[i], str[j]);
+                      i++; j--;
+                }
+          };
+
+          if (l < j)
+                quickSort(str, l, j);
+          if (i < p)
+                quickSort(str, i, p);
+    }
+
+int main()
+{
+    std::string str;
+    std::cout << "Podaj napis do sortowania: ";
+    std::cin >> str;
+    quickSort(str, 0, str.size()-1);
+    std::cout << str;
+            return 0;
+}
+
